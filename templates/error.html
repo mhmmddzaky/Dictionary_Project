@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Tag meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Import Bootstrap dan JQuery -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+    <!-- Title -->
+    <title>Word Not Found!</title>
+
+    <!-- Link ke file CSS -->
+    <link href="{{ url_for('static', filename='mystyle.css')}}" rel="stylesheet" />
+
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="banner" onclick="window.location.href = '/';"></div>
+        <div class="container text-center mt-5">
+            <h3>Your word, "{{ keyword }}", could not be found</h3>
+            <h6>Here are some suggested words :</h6>
+            <div>
+                {% for suggestion in suggestions %}
+                <a href="{{ url_for('detail', keyword=suggestion) }}" class="btn btn-primary suggestion-btn">
+                    {{ suggestion }}
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <footer class="footer py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a href="/" class="nav-link px-2 text-muted">Home Page</a></li>
+        </ul>
+        <p class="text-center text-muted">© 2024 Muhammad Dzaky and Co</p>
+    </footer>
+</body>
+
+</html>
